@@ -10,3 +10,15 @@ C:\Users\opilane\source\repos\Anton I\Andmebass_v2\obj\Debug\Andmebass_TARpv23.e
 C:\Users\opilane\source\repos\Anton I\Andmebass_v2\obj\Debug\Andmebass_TARpv23.pdb
 C:\Users\opilane\source\repos\Anton I\Andmebass_v2\bin\Debug\Database.mdf
 C:\Users\opilane\source\repos\Anton I\Andmebass_v2\bin\Debug\Database_log.ldf
+C:\Users\Anton\Source\Repos\DatabaseForms\bin\Debug\Database.mdf
+C:\Users\Anton\Source\Repos\DatabaseForms\bin\Debug\Database_log.ldf
+C:\Users\Anton\Source\Repos\DatabaseForms\bin\Debug\Andmebass_TARpv23.exe.config
+C:\Users\Anton\Source\Repos\DatabaseForms\bin\Debug\Andmebass_TARpv23.exe
+C:\Users\Anton\Source\Repos\DatabaseForms\bin\Debug\Andmebass_TARpv23.pdb
+C:\Users\Anton\Source\Repos\DatabaseForms\obj\Debug\Andmebass_TARpv23.csproj.AssemblyReference.cache
+C:\Users\Anton\Source\Repos\DatabaseForms\obj\Debug\Andmebass_TARpv23.Form1.resources
+C:\Users\Anton\Source\Repos\DatabaseForms\obj\Debug\Andmebass_TARpv23.Properties.Resources.resources
+C:\Users\Anton\Source\Repos\DatabaseForms\obj\Debug\Andmebass_TARpv23.csproj.GenerateResource.cache
+C:\Users\Anton\Source\Repos\DatabaseForms\obj\Debug\Andmebass_TARpv23.csproj.CoreCompileInputs.cache
+C:\Users\Anton\Source\Repos\DatabaseForms\obj\Debug\Andmebass_TARpv23.exe
+C:\Users\Anton\Source\Repos\DatabaseForms\obj\Debug\Andmebass_TARpv23.pdb

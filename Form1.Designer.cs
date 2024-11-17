@@ -42,6 +42,7 @@
             this.uuenda_btn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.otsipilt = new System.Windows.Forms.Button();
+            this.connectDB_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.andmebaasDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -158,11 +159,22 @@
             this.otsipilt.UseVisualStyleBackColor = true;
             this.otsipilt.Click += new System.EventHandler(this.otsipilt_Click);
             // 
+            // connectDB_btn
+            // 
+            this.connectDB_btn.Location = new System.Drawing.Point(556, 197);
+            this.connectDB_btn.Name = "connectDB_btn";
+            this.connectDB_btn.Size = new System.Drawing.Size(93, 33);
+            this.connectDB_btn.TabIndex = 12;
+            this.connectDB_btn.Text = "Lisa andmebaas";
+            this.connectDB_btn.UseVisualStyleBackColor = true;
+            this.connectDB_btn.Click += new System.EventHandler(this.connectDB_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.connectDB_btn);
             this.Controls.Add(this.otsipilt);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.uuenda_btn);
@@ -201,6 +213,7 @@
         private System.Windows.Forms.Button uuenda_btn;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button otsipilt;
+        private System.Windows.Forms.Button connectDB_btn;
     }
 }
 

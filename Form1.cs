@@ -14,25 +14,58 @@ namespace Andmebass_TARpv23
 {
     public partial class Form1 : Form
     {
-        
-        SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\opilane\source\repos\Anton I\Andmebass_v2\Database.mdf"";Integrated Security=True");
+        static string filePath;
+        SqlConnection conn;
         SqlCommand cmd;
         SqlDataAdapter adapter;
         public Form1()
         {
             InitializeComponent();
-            NaitaAndmed();
+            FindDB();
+            if (conn != null) { NaitaAndmed(); }
         }
+
+        public void FindDB()
+        {
+            filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database.mdf");
+
+            if (File.Exists(filePath))
+            {
+                conn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={filePath};Integrated Security=True");
+            }
+            else
+            {
+                MessageBox.Show("База данных не найдена. Подключите новую базу данных.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         public void NaitaAndmed()
         {
-            conn.Open();
-            DataTable dt = new DataTable();
-            cmd = new SqlCommand("SELECT * FROM Toode", conn);
-            adapter = new SqlDataAdapter(cmd);
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-            conn.Close();
+            if (conn == null)
+            {
+                MessageBox.Show("Подключение к базе данных не настроено.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                conn.Open();
+                cmd = new SqlCommand("SELECT * FROM Toode", conn);
+                adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
+
 
         private void Lisa_btn_Click(object sender, EventArgs e)
         {
@@ -158,5 +191,47 @@ namespace Andmebass_TARpv23
                 MessageBox.Show("Puudub toode nimetus või ole cancel vajatud");
             }
         }
+
+        private void connectDB_btn_Click(object sender, EventArgs e)
+        {
+            open = new OpenFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                Multiselect = false,
+                Filter = "Database Files (*.mdf)|*.mdf"
+            };
+
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string projectRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\");
+                    string databasesFolder = Path.Combine(projectRoot, "Databases");
+                    Directory.CreateDirectory(databasesFolder);
+
+                    // Новый путь для базы данных
+                    string newFilePath = Path.Combine(databasesFolder, Path.GetFileName(open.FileName));
+
+                    // Копируем файл базы данных
+                    File.Copy(open.FileName, newFilePath, overwrite: true);
+
+                    // Обновляем путь для подключения
+                    filePath = newFilePath;
+                    conn.ConnectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={filePath};Integrated Security=True";
+
+                    // Проверяем подключение
+                    conn.Open();
+                    conn.Close();
+
+                    MessageBox.Show("База данных успешно подключена.");
+                    NaitaAndmed(); // Обновляем данные в интерфейсе
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка подключения: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
     }
 }
